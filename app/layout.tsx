@@ -2,6 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import BottomTab from './components/BottomTab';
+import PwaRegister from './components/PwaRegister';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -34,11 +35,14 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-        <meta name="theme-color" content="#000000" />
+        <meta name="theme-color" content="#16a34a" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <link rel="manifest" href="/manifest.webmanifest" />
+        <link rel="apple-touch-icon" href="/icon.svg" />
       </head>
       <body className={inter.className}>
+        <PwaRegister />
         <div className="pb-16">{children}</div>
         <BottomTab />
       </body>
