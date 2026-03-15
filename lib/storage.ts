@@ -1,6 +1,18 @@
 import { UserStats, WorkoutSession } from './types';
 
 const STATS_KEY = 'repclock_stats';
+const USERNAME_KEY = 'repclock_username';
+
+export function getUsername(): string | null {
+  if (typeof window === 'undefined') return null;
+  return localStorage.getItem(USERNAME_KEY);
+}
+
+export function setUsername(name: string): void {
+  if (typeof window === 'undefined') return;
+  const trimmed = name.trim().slice(0, 32);
+  if (trimmed) localStorage.setItem(USERNAME_KEY, trimmed);
+}
 
 export function getStats(): UserStats {
   if (typeof window === 'undefined') {

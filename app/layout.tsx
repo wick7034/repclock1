@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import BottomTab from './components/BottomTab';
 import PwaRegister from './components/PwaRegister';
+import UsernameGate from './components/UsernameGate';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -43,8 +44,10 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <PwaRegister />
-        <div className="pb-16">{children}</div>
-        <BottomTab />
+        <UsernameGate>
+          <div className="pb-16">{children}</div>
+          <BottomTab />
+        </UsernameGate>
       </body>
     </html>
   );
