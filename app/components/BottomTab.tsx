@@ -3,14 +3,16 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
-import { Home, BarChart3, Download } from 'lucide-react';
+import { Home, BarChart3, Download, Rss, Trophy } from 'lucide-react';
 import InstallIosModal, { wasIosInstallDismissed } from './InstallIosModal';
 
 const INSTALLED_KEY = 'repclock-pwa-installed';
 
 const navTabs = [
   { href: '/', label: 'Home', icon: Home },
+  { href: '/feed', label: 'Feed', icon: Rss },
   { href: '/stats', label: 'Stats', icon: BarChart3 },
+  { href: '/leaderboard', label: 'Leaderboard', icon: Trophy },
 ];
 
 function isStandalone(): boolean {
@@ -107,7 +109,7 @@ export default function BottomTab() {
   }, [installPrompt, installPromptHandled]);
 
   const tabs = [...navTabs];
-  const installIndex = 1;
+  const installIndex = 1; // after Home
   if (showInstallTab) {
     tabs.splice(installIndex, 0, {
       href: '#install',

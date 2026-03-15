@@ -5,7 +5,8 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { ProgressClock } from '@/components/ProgressClock';
 import { getProtocol } from '@/lib/workout-protocols';
-import { getWeekNumber, saveSession } from '@/lib/storage';
+import { getWeekNumber, getUsername, saveSession } from '@/lib/storage';
+import { saveCompletedSessionToSupabase } from '@/lib/supabase-sessions';
 import { MinuteStatus, ExerciseType } from '@/lib/types';
 import { CircleCheck as CheckCircle2, SkipForward, Circle as XCircle } from 'lucide-react';
 
@@ -119,6 +120,13 @@ function WorkoutContent() {
     };
 
     saveSession(session);
+    saveCompletedSessionToSupabase({
+      displayName: getUsername(),
+      type: session.type,
+      totalReps: session.totalReps,
+      completedMinutes: session.completedMinutes,
+      weekNumber: session.weekNumber,
+    }).then(() => {});
 
     router.push(
       `/complete?type=${type}&reps=${totalReps}&completed=${completedMinutes}&total=${protocol.totalMinutes}`
