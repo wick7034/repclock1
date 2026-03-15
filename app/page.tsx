@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Activity, ChartBar as BarChart3 } from 'lucide-react';
+import { Activity } from 'lucide-react';
 
 export default function Home() {
   const router = useRouter();
@@ -45,16 +45,6 @@ export default function Home() {
             className="w-full bg-blue-600 hover:bg-blue-700 text-white py-6 rounded-2xl text-lg font-semibold transition-colors shadow-lg shadow-blue-900/50"
           >
             Start Pullup Session
-          </motion.button>
-
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={() => router.push('/stats')}
-            className="w-full bg-gray-800 hover:bg-gray-700 text-white py-6 rounded-2xl text-lg font-semibold transition-colors flex items-center justify-center gap-3"
-          >
-            <BarChart3 className="w-6 h-6" />
-            View Stats
           </motion.button>
         </div>
 
